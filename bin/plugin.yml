@@ -1,0 +1,9 @@
+name: Region Helper
+version: 1.0.0
+description: Helps creating and managing regions by displaying virtual fencings
+author: silvinci
+authors: [silvinci, CubixCraft]
+website: https://github.com/CubixCraft/region-helper
+
+main: com.github.cubixcraft.regionhelper.MainPlugin
+depend: [JSONAPI, WorldGuard]
