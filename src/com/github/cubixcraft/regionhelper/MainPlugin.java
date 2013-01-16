@@ -8,6 +8,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.github.cubixcraft.regionhelper.fencing.VirtualBlockHost;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 
@@ -23,8 +24,15 @@ public class MainPlugin extends JavaPlugin {
 		instance = this;
 		pm = getServer().getPluginManager();
 		
-		// load WorldGuard
-		getWorldGuard();
+		// check for WorldGuard
+		if (getWorldGuard() == null) {
+			log.severe("[Region Helper] WorldGuard is not installed!");
+			pm.disablePlugin(this);
+			return;
+		}
+		
+		// register Virtual Blocks
+		pm.registerEvents(new VirtualBlockHost(), this);
 	}
 	
 	public void onDisable() {}
